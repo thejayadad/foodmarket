@@ -5,18 +5,21 @@
 body{
   overflow-x: hidden;
 }
-.menu-icon {
-  cursor: pointer;
+
+input[type="email"],
+input[type="text"],
+input[type="password"]{
+  @apply rounded-r-lg appearance-none border border-secondary w-full py-8 px-4 bg-white text-primary placeholder-gray-400 shadow-sm text-lg md:text-2xl lg:text-3xl focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent
 }
 
-.menu-bg {
-  @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex items-center justify-center;
+button[type="submit"]{
+  @apply py-12 px-4  hover:bg-secondary focus:ring-purple-500 focus:ring-offset-purple-200 text-primary w-full transition ease-in duration-200 text-center text-lg md:text-xl lg:text-2xl font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg bg-transparent border border-spacing-8 border-secondary
 }
 
-.menu-links {
-  @apply text-white text-center;
+button{
+  @apply bg-transparent border border-spacing-8
 }
 
-.menu-links a {
-  @apply block text-white no-underline mb-4;
+h1{
+  @apply text-8xl md:text-6xl mt-8 font-bold text-primary
 }

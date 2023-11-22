@@ -10,17 +10,17 @@ const MenuSection = () => {
   ];
 
   return (
-    <div className="bg-secondary py-16 min-h-screen">
+    <div className=" py-16 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         className="text-white text-center mb-8"
       >
-        <h2 className="text-8xl md:text-6xl mt-8 font-bold">Our Menu</h2>
+        <h1>Our Menu</h1>
         <p className="text-lg md:text-xl">Delicious seafood options just for you</p>
       </motion.div>
-
+ 
       <div className="flex flex-wrap justify-center">
         {menuItems.map((item) => (
           <motion.div

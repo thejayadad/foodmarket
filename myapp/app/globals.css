@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  overflow-x: hidden;
+}
+.menu-icon {
+  cursor: pointer;
+}
+
+.menu-bg {
+  @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex items-center justify-center;
+}
+
+.menu-links {
+  @apply text-white text-center;
+}
+
+.menu-links a {
+  @apply block text-white no-underline mb-4;
+}

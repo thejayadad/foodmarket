@@ -3,10 +3,42 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa'; 
 import Logo from '../Logo/Logo';
+import {signOut, useSession} from "next-auth/react";
 
+function AuthLinks({status, userName}) {
+    if (status === 'authenticated') {
+      return (
+        <>
+          <Link href={'/profile'} className="whitespace-nowrap">
+            Hello, {userName}
+          </Link>
+          <button
+          className='py-2 px-1  hover:bg-secondary focus:ring-purple-500 focus:ring-offset-purple-200 text-primary w-full transition ease-in duration-200 text-center text-lg md:text-xl lg:text-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent border border-spacing-8 border-secondary'
+            onClick={() => signOut()}
+            >
+            Logout
+          </button>
+        </>
+      );
+    }
+    if (status === 'unauthenticated') {
+      return (
+        <>
+          <Link href={'/login'}>Login</Link>
+          <Link href={'/register'} className="bg-primary  text-white px-8 py-2">
+            Register
+          </Link>
+        </>
+      );
+    }
+  }
 
 const Navbar = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
+    const session = useSession();
+    const status = session?.status;
+    const userData = session.data?.user;
+    let userName = userData?.name || userData?.email;
 
     const menuLinks = [
       { text: 'Home', link: '/' },
@@ -18,6 +50,10 @@ const Navbar = () => {
     const toggleMobileMenu = () => {
       setMobileMenu(!mobileMenu);
     };
+
+    if (userName && userName.includes(' ')) {
+        userName = userName.split(' ')[0];
+      }
   return (
     <header className='px-4 py-12 z-20 sticky top-0'>
         <div className='flex justify-between items-center px-4 md:px-8'>
@@ -31,13 +67,9 @@ const Navbar = () => {
           ))}
         </div>
         <div className="flex items-center space-x-6">
-        <span className="relative z-10 ">
-            <FaShoppingCart className='text-primary' size={20}  />
-            <span className="text-white absolute -top-4 -right-2 bg-secondary text-red text-lg rounded-full w-5 h-5 flex items-center justify-center">
-            3 
-            </span>
-        </span>
-        <span className='cursor-pointer px-3 py-4 bg-transparent border border-spacing-8 border-secondary'>Logout</span>
+
+        <AuthLinks status={status} userName={userName} />
+      
         <div className='md:hidden'>
         <button onClick={toggleMobileMenu}>
             {mobileMenu ? <FaTimes size={20} /> : <FaBars size={20} />}

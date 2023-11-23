@@ -48,7 +48,6 @@ const Login = () => {
               />
               <button
               type='submit'
-            //   onClick={() => signIn()}
             disabled={loginInProgress}
               >
                 LOGIN
@@ -56,10 +55,10 @@ const Login = () => {
               <Link href={'/register'}>
                 Don&apos;t have an account? <br /> Register now.
               </Link>
-              <button type="button" 
+              <button type="submit" 
             onClick={() => signIn('google', {callbackUrl: '/'})}                
-            className="flex gap-4 justify-center">
-          Login with google
+            className="">
+          Login with Google
         </button>
             </div>
           </form>
